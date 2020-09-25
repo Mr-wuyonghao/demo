@@ -1,0 +1,44 @@
+# 关于几个常见的画图
+
+## parplot 条形图 作用于向量或矩阵（可以带有名字，有名字的话会显示名字，以列名为横轴）  
+
+```{r}
+b<-1:3
+names(b)<-c('a','b','c')
+barplot(b)
+datas<-data.frame(x=c('a','c','a','b'),y=1:4)
+df<-table(datas$x)  #统计datas$x中不同种类出现的次数
+barplot(df)
+```
+
+```{r}
+#只有列有名字
+x<-cbind(a=1:5,b=2:6,c=3:7)
+barplot(x)
+barplot(x,beside = T)
+
+```
+
+```{r}
+x<-cbind(a=1:5,b=2:6,c=3:7)
+#行也有名字
+rownames(x)<-c('o','p','q','r','s')
+barplot(x,beside = T,col=1:6)
+#配合legen函数，添加图例,leg作用是找出图例种类
+leg<-as.factor(rownames(x))
+legend("topleft",legend=as.character(levels(leg)),fill=1:6)
+```
+
+## hist  频数分布（频率）分布图  不需要带名字
+```{r}
+a<-c(rep(1:10,5),1:4)
+hist(a)
+```
+
+## boxplot  需要用y~x形式,有数据集参数
+
+```{r}
+datas<-data.frame(x=c(rep('a',5),rep('b',6),rep('c',3)),y=1:14)
+boxplot(y~x,data=datas)
+
+```
